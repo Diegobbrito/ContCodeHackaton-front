@@ -1,13 +1,15 @@
 // Selecionar o formulário
 // const stockForm = document.getElementById('stockForm');
-const btnSubmit = document.querySelector('.btn__submit');
+// const btnSubmit = document.querySelector('.btn__submit');
 // Ouvir o evento de envio do formulário
 btnSubmit.addEventListener('click', async (event) => {
 //   event.preventDefault(); // Impedir o comportamento padrão do formulário (reload da página)
 
   // Obter os dados do formulário
   const code = document.querySelector('.input__code').value;
+console.log(code);
   const quantity = document.querySelector('.input__quantity').value;
+  console.log(quantity);
 
   // Construir o payload para o backend
   const payload = {
