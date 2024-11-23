@@ -1,25 +1,125 @@
-const btnSubmit = document.querySelector(".btn__submit");
-btnSubmit.addEventListener("click", ()=> {
-    console.log('deu bom')
-    window.open("result.html", "_blank");
-})
+// const btnSubmit = document.querySelector(".btn__submit");
+// btnSubmit.addEventListener("click", ()=> {
+//     console.log('deu bom')
+//     window.open("result.html", "_blank");
 
-const btnAdd = document.querySelector('.btn__add--action');
+//     addClass();
+//     // addInAObject();
+//     // submitData();
+// })
 
-btnAdd.addEventListener("click", ()=> {
-    const mainFields = document.querySelector(".main__fields");
-    const main = document.querySelector(".main");
+// const btnAdd = document.querySelector('.btn__add--action');
 
-    const newMainFields = mainFields.cloneNode(true);
-    main.appendChild(newMainFields);
-}
-)
+// btnAdd.addEventListener("click", () => {
+//     const mainFields = document.querySelector(".main__fields");
+//     const main = document.querySelector(".main");
+//     const fieldsLi = document.querySelectorAll(".fields__li");
 
-//icone copy
+// if(inputCode.value && inputPriceAverage.value && inputQtd != null){
+//     const newMainFields = mainFields.cloneNode(true);  // Clonando o elemento
+//     main.appendChild(newMainFields);  // Adicionando o novo elemento à página
+    
+// }
 
-const iconeCopy = document.querySelector(".icone__copy");
-iconeCopy.addEventListener('click', ()=>{
-    document.querySelector('.txt').select();
-    document.execCommand('copy');
 
-})
+
+// });
+
+
+// //icone copy
+
+// // const iconeCopy = document.querySelector(".icone__copy");
+// // iconeCopy.addEventListener('click', copy);
+
+// // async function copy() {
+// //     alert('Clique detectado!');
+
+// //     // Obtendo o texto do elemento com a classe .txt
+// //     let textForCopy = document.querySelector('.txt').textContent; // Para <p> ou <div>, use textContent
+
+// //     try {
+// //         // Tentando copiar o texto para a área de transferência
+// //         await navigator.clipboard.writeText(textForCopy);
+// //         alert('Texto copiado!');
+// //     } catch (error) {
+// //         console.error('Erro ao copiar:', error);
+// //         alert('Falha ao copiar o texto!');
+// //     }
+// // }
+
+
+// // const iconeCopy = document.querySelector(".icone__copy");
+// // iconeCopy.addEventListener('click', copy);
+
+// // async function copy() {
+// //     alert('click');
+// //     let textForCopy = document.querySelector('.txt').innerText;
+// //     await navigator.clipboard.writeText(textForCopy);
+// // }
+
+// const inputCode = document.querySelector('.input__code');
+// const inputPriceAverage= document.querySelector('.input__average--price');
+// const inputQtd = document.querySelector('.input__quantity');
+
+// const addClass = () => {
+//     //tudo nodelist
+//     const allInputCode = document.querySelectorAll(".input__code");
+//     const allInputPrice = document.querySelectorAll(".input__average--price");
+//     const allInputQtd = document.querySelectorAll(".input__quantity");
+
+//     // const oneStock = {
+//     //     `ativo`
+//     // }
+
+//     //agora array
+//     const stocksCode = Array.from(allInputCode).map((elemento, i) => {
+//         elemento.classList.add(`ativo${i+1}`)
+//         return elemento
+//     }
+// ); 
+        
+
+//     const stocksPrice = Array.from(allInputPrice).map((elemento, i) => {
+//         elemento.classList.add(`ativo${i+1}`)
+//     }
+// ); 
+
+//     const stocksQtd = Array.from(allInputQtd).map((elemento, i) => {
+//         elemento.classList.add(`ativo${i+1}`)}); 
+//         return stocksQtd;
+
+// }
+
+//     const addInAObject = ()=>{
+//         // console.log(stocksCode,stocksPrice,stocksQtd);
+
+//     }
+
+// const submitData = () => {
+//     console.log(inputCode.value,inputPriceAverage.value,inputQtd.value);
+//     const data = {
+//         "stocks":[]
+//     }
+//     data += {
+//         "stocks":
+//         [
+//            {
+//             "code":inputCode.value,
+//             "quantity":inputQtd.value,
+//             "averagePrice":inputPriceAverage.value
+//            },
+//            {
+//             "code":inputCode.value,
+//             "quantity":inputQtd.value,
+//             "averagePrice":inputPriceAverage.value
+//            },
+//            {
+//             "code":inputCode.value,
+//             "quantity":inputQtd.value,
+//             "averagePrice":inputPriceAverage.value
+//            }
+//         ]
+//     }
+// }
+
+
