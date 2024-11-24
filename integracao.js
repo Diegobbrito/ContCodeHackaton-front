@@ -13,7 +13,6 @@ btnSubmit.addEventListener('click', async () => {
 
     const apiUrl = process.env.NEXT_PUBLIC_API_URL;
     try {
-        console.log(apiUrl)
         const response = await fetch(`${apiUrl}/api/v1/stock`, {
             method: 'POST',
             headers: {
