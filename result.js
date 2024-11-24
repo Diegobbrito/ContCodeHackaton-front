@@ -25,14 +25,35 @@ document.addEventListener('DOMContentLoaded', () => {
             actionItem.innerHTML = `
                 <div class="text-lg font-semibold text-blue-600">${stock.code}</div>
                 <div class="text-gray-700">
-                    <strong>CNPJ:</strong> ${stock.companyDocument}
+                    <strong class="cnpj">CNPJ:</strong> ${stock.companyDocument}
+                    <img src="/imgs/copy.png" class="icone__copy" alt="icone copiar para área de transferencia">
                 </div>
                 <div class="text-gray-700">
                     <strong>Descrição:</strong> ${stock.description}
                 </div>
-            `;
+                <button class="btn__copy">
+                    <img src="/imgs/copy.png" class="icone__copy icone__copy--discrimicao" alt="icone copiar para área de transferencia">
+                </button>
+                `;
             actionsList.appendChild(actionItem);
+            
         });
+
+    //     const copiedTxt = async (text) => {
+    //         try {
+    //             await navigator.clipboard.writeText(text);
+    //         } catch (e) {
+    //             console.log(e);
+    //         }
+    //     };
+
+    //    const copy = () => {document.querySelector(".btn__copy").addEventListener('click',(stock)=>{
+    //     const text = stock.companyDocument.value;
+    //     writeTextOnTheClipboard();
+    //    })}
+    //    copy();
+
+       
 
         // Garantir que a mensagem de "nenhuma ação" não seja exibida
         noActionsMessage.classList.add('hidden');

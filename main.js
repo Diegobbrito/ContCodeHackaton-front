@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Criar um objeto de ação com os dados fornecidos
             const action = {
-                code: codeInput.value,
+                code: codeInput.value.toUpperCase(),
                 value: parseFloat(valueInput.value), // Alterado para 'value'
                 quantity: parseInt(quantityInput.value),
             };
@@ -92,6 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 // Redirecionar para a página result.html
                 window.location.href = 'result.html'; // Redireciona para a página de resultados
+                link.target = '_blank';
 
             } catch (error) {
                 console.error(error);
