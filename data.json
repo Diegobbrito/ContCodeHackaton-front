@@ -1,0 +1,19 @@
+{
+    "stocks": [
+        {
+            "code": "ITUB4",
+            "companyDocument": "60.677.781/0001-12",
+            "description": "200 ações da empresa Itaú Unibanco Holding S.A., ITUB4 com CNPJ 60.677.781/0001-12, com valor total de R$5.020,00"
+        },
+        {
+            "code": "PETR4",
+            "companyDocument": "33.000.167/0001-01",
+            "description": "100 ações da empresa Petrobras S.A., PETR4 com CNPJ 33.000.167/0001-01, com valor total de R$3.050,00"
+        },
+        {
+            "code": "VALE3",
+            "companyDocument": "33.592.510/0001-54",
+            "description": "50 ações da empresa Vale S.A., VALE3 com CNPJ 33.592.510/0001-54, com valor total de R$4.537,50"
+        }
+    ]
+}
