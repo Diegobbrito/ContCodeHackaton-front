@@ -12,9 +12,9 @@ btnSubmit.addEventListener('click', async () => {
     };
 
     const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-    console.log(apiUrl)
     try {
-        const response = await fetch('https://stock-route-brianzav-dev.apps.sandbox-m4.g2pi.p1.openshiftapps.com/api/v1/stock', {
+        console.log(apiUrl)
+        const response = await fetch(`${apiUrl}/api/v1/stock`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
