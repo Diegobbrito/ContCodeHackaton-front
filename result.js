@@ -25,10 +25,14 @@ document.addEventListener('DOMContentLoaded', () => {
             actionItem.innerHTML = `
                 <div class="text-lg font-semibold text-blue-600">${stock.code}</div>
                 <div class="text-gray-700">
-                    <strong>CNPJ:</strong> ${stock.companyDocument}
+                    <strong>CNPJ:</strong>
+                    <span id="company-document-${stock.code}">${stock.companyDocument}</span>
+                    <i onclick="copyText('company-document-${stock.code}')" class="fas fa-copy text-blue-500 cursor-pointer hover:text-blue-700 ml-2"></i>
                 </div>
                 <div class="text-gray-700">
-                    <strong>Descrição:</strong> ${stock.description}
+                    <strong>Descrição:</strong>
+                    <span id="company-description-${stock.code}">${stock.description}</span>
+                    <i onclick="copyText('company-description-${stock.code}')" class="fas fa-copy text-blue-500 cursor-pointer hover:text-blue-700 ml-2"></i>
                 </div>
             `;
             actionsList.appendChild(actionItem);
@@ -41,3 +45,15 @@ document.addEventListener('DOMContentLoaded', () => {
         noActionsMessage.classList.remove('hidden');
     }
 });
+
+// Função para copiar o texto
+function copyText(elementId) {
+    var textElement = document.getElementById(elementId);
+    var range = document.createRange();
+    range.selectNode(textElement);
+    window.getSelection().removeAllRanges();
+    window.getSelection().addRange(range);
+    document.execCommand('copy');
+    window.getSelection().removeAllRanges(); // Clear the selection
+    alert('Texto copiado para a área de transferência!');
+}
