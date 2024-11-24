@@ -6,7 +6,7 @@ btnSubmit.addEventListener("click", ()=> {
     addClass();
     // addInAObject();
     // submitData();
-    generateJSON();
+    // generateJSON();
 })
 
 const btnAdd = document.querySelector('.btn__add--action');
@@ -120,39 +120,39 @@ const addClass = () => {
 //     }
 // }
 
-const generateJSON = () => {
-    // Selecionar os inputs das listas
-    const allInputCode = document.querySelectorAll(".input__code");
-    const allInputPrice = document.querySelectorAll(".input__average--price");
-    const allInputQtd = document.querySelectorAll(".input__quantity");
+// const generateJSON = () => {
+//     // Selecionar os inputs das listas
+//     const allInputCode = document.querySelectorAll(".input__code");
+//     const allInputPrice = document.querySelectorAll(".input__average--price");
+//     const allInputQtd = document.querySelectorAll(".input__quantity");
 
-    // Inicializar o array para armazenar os objetos "stocks"
-    const stocks = [];
+//     // Inicializar o array para armazenar os objetos "stocks"
+//     const stocks = [];
 
-    // Iterar sobre os elementos das listas usando o índice
-    allInputCode.forEach((inputCode, index) => {
-        const inputQtd = allInputQtd[index];  // Correspondente na lista de quantidades
-        const inputPriceAverage = allInputPrice[index];  // Correspondente na lista de preços
+//     // Iterar sobre os elementos das listas usando o índice
+//     allInputCode.forEach((inputCode, index) => {
+//         const inputQtd = allInputQtd[index];  // Correspondente na lista de quantidades
+//         const inputPriceAverage = allInputPrice[index];  // Correspondente na lista de preços
 
-        // Adicionar o objeto ao array de "stocks"
-        stocks.push({
-            [`code${index + 1}`]: inputCode.value,
-            [`quantity${index + 1}`]: inputQtd.value,
-            [`averagePrice${index + 1}`]: inputPriceAverage.value,
-        });
-    });
+//         // Adicionar o objeto ao array de "stocks"
+//         stocks.push({
+//             [`code${index + 1}`]: inputCode.value,
+//             [`quantity${index + 1}`]: inputQtd.value,
+//             [`averagePrice${index + 1}`]: inputPriceAverage.value,
+//         });
+//     });
 
-    // Criar o JSON final
-    const resultJSON = {
-        stocks: stocks,
-    };
+//     // Criar o JSON final
+//     const resultJSON = {
+//         stocks: stocks,
+//     };
 
-    // Retornar ou exibir o JSON
-    console.log(resultJSON);
-    return resultJSON;
-};
+//     // Retornar ou exibir o JSON
+//     console.log(resultJSON);
+//     return resultJSON;
+// };
 
-// Chamar a função
+// // Chamar a função
 
 
 
