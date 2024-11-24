@@ -8,7 +8,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 
-    <!-- Adicionando Tailwind CSS via CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
 
     <title>App</title>
@@ -43,14 +42,11 @@
             </div>
         </div>
 
-        <!-- Botões fixos (Adicionar Ação e Enviar) -->
-        <div class="flex justify-between mt-4">
-            <button type="button" class="btn__add--action px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-300">
-                Adicionar Ação
-            </button>
-            <button type="button" class="btn__submit px-6 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition duration-300">
-                Enviar
-            </button>
+        <div id="actions-list" class="mt-6 space-y-4"></div> <!-- Lista de ações -->
+
+        <div class="div__btn flex  mt-4">
+            <button type="button" class="btn__add--action px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-300">Adicionar Ação</button>
+            <button type="button" class="btn__submit px-6 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition duration-300">Enviar</button>
         </div>
 
         <!-- Lista de Ações que será exibida abaixo dos botões -->

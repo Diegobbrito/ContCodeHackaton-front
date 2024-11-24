@@ -25,6 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
             actionItem.innerHTML = `
                 <div class="text-lg font-semibold text-blue-600">${stock.code}</div>
                 <div class="text-gray-700">
+
                     <strong>CNPJ:</strong>
                     <span id="company-document-${stock.code}">${stock.companyDocument}</span>
                     <i onclick="copyText('company-document-${stock.code}')" class="fas fa-copy text-blue-500 cursor-pointer hover:text-blue-700 ml-2"></i>
@@ -36,6 +37,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             `;
             actionsList.appendChild(actionItem);
+        });
+
+        // Adicionar evento de clique para copiar texto
+        actionsList.addEventListener('click', (event) => {
+            const button = event.target.closest('.btn__copy');
+            if (button) {
+                const textToCopy = button.getAttribute('data-text');
+                if (textToCopy) {
+                    navigator.clipboard.writeText(textToCopy).then(() => {
+                        alert('Texto copiado para a área de transferência!');
+                    }).catch(err => {
+                        console.error('Erro ao copiar texto: ', err);
+                    });
+                }
+            }
         });
 
         // Garantir que a mensagem de "nenhuma ação" não seja exibida
