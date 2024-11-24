@@ -3,7 +3,7 @@ btnSubmit.addEventListener("click", ()=> {
     console.log('deu bom')
     window.open("result.html", "_blank");
 
-    addClass();
+    // addClass();
     // addInAObject();
     // submitData();
     // generateJSON();
@@ -59,35 +59,35 @@ btnAdd.addEventListener("click", () => {
 // const inputPriceAverage= document.querySelector('.input__average--price');
 // const inputQtd = document.querySelector('.input__quantity');
 
-const addClass = () => {
-    //tudo nodelist
-    const allInputCode = document.querySelectorAll(".input__code");
-    const allInputPrice = document.querySelectorAll(".input__average--price");
-    const allInputQtd = document.querySelectorAll(".input__quantity");
+// const addClass = () => {
+//     //tudo nodelist
+//     const allInputCode = document.querySelectorAll(".input__code");
+//     const allInputPrice = document.querySelectorAll(".input__average--price");
+//     const allInputQtd = document.querySelectorAll(".input__quantity");
 
-    // const oneStock = {
-    //     `ativo`
-    // }
+//     // const oneStock = {
+//     //     `ativo`
+//     // }
 
-    //agora array
-    const stocksCode = Array.from(allInputCode).map((elemento, i) => {
-        elemento.classList.add(`ativo${i+1}`)
-        return elemento
-    }
-); 
+//     //agora array
+//     const stocksCode = Array.from(allInputCode).map((elemento, i) => {
+//         elemento.classList.add(`ativo${i+1}`)
+//         return elemento
+//     }
+// ); 
         
 
-    const stocksPrice = Array.from(allInputPrice).map((elemento, i) => {
-        elemento.classList.add(`ativo${i+1}`)
-    }
-); 
+//     const stocksPrice = Array.from(allInputPrice).map((elemento, i) => {
+//         elemento.classList.add(`ativo${i+1}`)
+//     }
+// ); 
 
-    const stocksQtd = Array.from(allInputQtd).map((elemento, i) => {
-        elemento.classList.add(`ativo${i+1}`)}); 
-        return stocksQtd;
+//     const stocksQtd = Array.from(allInputQtd).map((elemento, i) => {
+//         elemento.classList.add(`ativo${i+1}`)}); 
+//         return stocksQtd;
 
-}
-
+// }
+/////////////////////////////////////////////////////
 //     const addInAObject = ()=>{
 //         // console.log(stocksCode,stocksPrice,stocksQtd);
 
