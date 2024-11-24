@@ -1,57 +1,94 @@
-const btnSubmit = document.querySelector(".btn__submit");
-const btnAdd = document.querySelector('.btn__add--action');
+let stockActions = []; // Lista para armazenar as ações
 
-// Armazenar as ações
-let stockActions = [];
+const btnAddAction = document.querySelector('.btn__add--action'); // Botão de adicionar
+const btnSubmit = document.querySelector('.btn__submit'); // Botão de enviar
 
-// Função para adicionar um novo campo de entrada para ações
-btnAdd.addEventListener("click", () => {
-    const mainFields = document.querySelector(".main__fields");
-    const newMainFields = mainFields.cloneNode(true);  // Clonando o elemento de campos
+// Função para adicionar uma ação à lista
+btnAddAction.addEventListener('click', () => {
+    // Obter os dados do formulário
+    const code = document.querySelector('.input__code').value; // Código do ativo
+    const quantity = document.querySelector('.input__quantity').value; // Quantidade
+    const value = document.querySelector('.input__average--price').value; // Preço médio
 
-    // Adicionar novos campos ao DOM
-    const main = document.querySelector(".main");
-    main.appendChild(newMainFields);
-});
-
-// Função para capturar os dados e enviar ao backend
-btnSubmit.addEventListener("click", async () => {
-    // Obter todos os campos de código, quantidade e preço
-    const allInputCode = document.querySelectorAll(".input__code");
-    const allInputPrice = document.querySelectorAll(".input__average--price");
-    const allInputQtd = document.querySelectorAll(".input__quantity");
-
-    // Verificar se todos os campos estão preenchidos
-    if (allInputCode.length === 0 || allInputPrice.length === 0 || allInputQtd.length === 0) {
-        alert("Por favor, adicione pelo menos uma ação e preencha todos os campos.");
+    // Validar os campos
+    if (!code || !quantity || !value) {
+        alert("Por favor, preencha todos os campos!");
         return;
     }
 
-    // Criar o payload com os dados
-    const stocks = Array.from(allInputCode).map((inputCode, index) => {
-        const code = inputCode.value;
-        const quantity = allInputQtd[index].value;
-        const price = allInputPrice[index].value;
-
-        return {
-            code: code,
-            quantity: parseInt(quantity),
-            value: parseFloat(price),
-        };
-    });
-
-    // Verificar se a lista de ações não está vazia
-    if (stocks.length === 0) {
-        alert("Nenhuma ação foi adicionada.");
-        return;
-    }
-
-    // Criar o objeto de payload
-    const payload = {
-        stocks: stocks,
+    // Criar o objeto da ação
+    const stock = {
+        code: code,
+        quantity: parseInt(quantity),
+        value: parseFloat(value),
     };
 
-    // Enviar a requisição POST
+    // Adicionar a ação à lista
+    stockActions.push(stock);
+
+    // Criar um novo campo para exibir a ação
+    const actionContainer = document.createElement('div');
+    actionContainer.classList.add('action-item', 'flex', 'justify-between', 'items-center', 'space-x-4', 'mt-4', 'p-4', 'border', 'border-gray-300', 'rounded-lg');
+
+    // Criar os elementos do campo
+    const actionContent = document.createElement('div');
+    actionContent.classList.add('flex', 'space-x-4');
+
+    const codeElement = document.createElement('span');
+    codeElement.textContent = `Código: ${stock.code}`;
+
+    const quantityElement = document.createElement('span');
+    quantityElement.textContent = `Quantidade: ${stock.quantity}`;
+
+    const valueElement = document.createElement('span');
+    valueElement.textContent = `Preço Médio: R$ ${stock.value.toFixed(2)}`;
+
+    actionContent.appendChild(codeElement);
+    actionContent.appendChild(quantityElement);
+    actionContent.appendChild(valueElement);
+
+    // Criar o botão de remover
+    const removeBtn = document.createElement('button');
+    removeBtn.textContent = 'Remover';
+    removeBtn.classList.add('text-red-500', 'hover:text-red-700', 'transition', 'duration-200', 'px-4', 'py-2', 'bg-transparent', 'border', 'border-red-500', 'rounded-lg');
+
+    // Função para remover a ação
+    removeBtn.addEventListener('click', () => {
+        // Remover o item da lista de ações
+        const index = stockActions.indexOf(stock);
+        if (index > -1) {
+            stockActions.splice(index, 1);
+        }
+
+        // Remover o item do DOM
+        actionContainer.remove();
+    });
+
+    // Adicionar os elementos ao container
+    actionContainer.appendChild(actionContent);
+    actionContainer.appendChild(removeBtn);
+
+    // Adicionar o novo item ao formulário
+    const formContainer = document.querySelector('.form-container');
+    formContainer.appendChild(actionContainer);
+
+    // Limpar os campos de entrada
+    document.querySelector('.input__code').value = '';
+    document.querySelector('.input__quantity').value = '';
+    document.querySelector('.input__average--price').value = '';
+});
+
+// Enviar as ações ao backend
+btnSubmit.addEventListener('click', async () => {
+    if (stockActions.length === 0) {
+        alert("Adicione pelo menos uma ação antes de enviar.");
+        return;
+    }
+
+    const payload = {
+        stocks: stockActions, // Enviar todas as ações da lista
+    };
+
     try {
         const response = await fetch('http://stock-route-brianzav-dev.apps.sandbox-m4.g2pi.p1.openshiftapps.com/api/v1/stock', {
             method: 'POST',
@@ -66,8 +103,6 @@ btnSubmit.addEventListener("click", async () => {
         }
 
         const data = await response.json();
-
-        // Mostrar a resposta no frontend
         const h2 = document.querySelector('.txt');
         h2.textContent = `Success: ${JSON.stringify(data)}`;
         console.log(data);

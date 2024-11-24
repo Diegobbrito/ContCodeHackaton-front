@@ -7,42 +7,55 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+
+    <!-- Adicionando Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
     <title>App</title>
 </head>
-<body>
-    <header class="header">
-        <div class="header__txt">
-            <h1 class="txt__hello">Olá</h1>
-            <p class="txt__p">Declare seu imposto de Renda de Ações de Forma <strong class="txt__highlight">Fácil</strong> e <strong class="txt__highlight">Rápida!</strong></p>
+
+<body class="bg-gray-100">
+<header class="bg-blue-600 text-white p-6">
+    <div class="text-center">
+        <h1 class="text-3xl font-semibold">Olá!</h1>
+        <p class="text-lg">Declare seu imposto de Renda de Ações de Forma <strong>Fácil</strong> e <strong>Rápida!</strong></p>
+    </div>
+</header>
+
+<main class="container mx-auto p-6">
+    <div class="mb-6">
+        <p class="text-xl font-semibold">Informe o código das Ações, o preço médio e a quantidade para calcular seu imposto de Renda de cada ação.</p>
+    </div>
+
+    <!-- Formulário de Ações -->
+    <div class="form-container space-y-6">
+        <div class="main__fields grid grid-cols-3 gap-4">
+            <div class="flex flex-col">
+                <label for="code" class="text-gray-700">Código da Ação</label>
+                <input id="code" class="input__code px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600" type="text" placeholder="Ex: ITUB4">
+            </div>
+            <div class="flex flex-col">
+                <label for="average-price" class="text-gray-700">Preço Médio</label>
+                <input id="average-price" class="input__average--price px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600" type="number" placeholder="Ex: 25.50">
+            </div>
+            <div class="flex flex-col">
+                <label for="quantity" class="text-gray-700">Quantidade</label>
+                <input id="quantity" class="input__quantity px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600" type="number" placeholder="Ex: 100">
+            </div>
         </div>
-       <img class="header__img" src="/imgs/foto.webp" alt="">
-    </header>
-    <main class="main">
-        <div class="main__box--explanation">
-            <p class="main__caixa--p">Informe o código das Ações, o preço médio e a quantidade, para calcular seu imposto de Renda de cada ação.</p>
+
+        <!-- Área onde as ações adicionadas serão exibidas -->
+        <div id="actions-list" class="mt-6 space-y-4"></div>
+
+        <!-- Botões -->
+        <div class="flex justify-between mt-4">
+            <button type="button" class="btn__add--action px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-300">Adicionar Ação</button>
+            <button type="button" class="btn__submit px-6 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition duration-300">Enviar</button>
         </div>
-        <ul class="main__fields" >
-            <li class="fields__li">
-                <label class="txt">Código</label>
-                <input class="input__fields input__code" type="text">
-            </li>
-            <li class="fields__li">
-                <label class="txt label__average--price">Preço Médio</label>
-                <input class="input__fields input__average--price " type="number">
-            </li>
-            <li class="fields__li">
-                <label class="txt">Quantidade</label>
-                <input class="input__fields input__quantity " type="number">                
-            </li>
-        </ul>
-    </main>
-    <button class="btn btn__add--action">
-        <p>Adicionar Ação</p>
-    </button>
-    <button class="input__fields txt btn btn__submit" >
-        <p>Enviar</p>
-    </button>
-    <script src="main.js"></script>
-    <script src="integracao.js"></script>
+    </div>
+
+</main>
+
+<script src="main.js"></script>
 </body>
 </html>
