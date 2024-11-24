@@ -72,8 +72,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 stocks: stockActions, // Enviar todas as ações da lista
             };
 
+            const apiUrl = 'https://stock-route-brianzav-dev.apps.sandbox-m4.g2pi.p1.openshiftapps.com';
             try {
-                const response = await fetch('https://stock-route-brianzav-dev.apps.sandbox-m4.g2pi.p1.openshiftapps.com/api/v1/stock', {
+
+                const response = await fetch(`${apiUrl}/api/v1/stock`, {
                     method: 'POST',
                     headers: { 
                         'Content-Type': 'application/json',
