@@ -1,159 +1,79 @@
 const btnSubmit = document.querySelector(".btn__submit");
-btnSubmit.addEventListener("click", ()=> {
-    console.log('deu bom')
-    window.open("result.html", "_blank");
-
-    addClass();
-    // addInAObject();
-    // submitData();
-    // generateJSON();
-})
-
 const btnAdd = document.querySelector('.btn__add--action');
 
+// Armazenar as ações
+let stockActions = [];
+
+// Função para adicionar um novo campo de entrada para ações
 btnAdd.addEventListener("click", () => {
     const mainFields = document.querySelector(".main__fields");
+    const newMainFields = mainFields.cloneNode(true);  // Clonando o elemento de campos
+
+    // Adicionar novos campos ao DOM
     const main = document.querySelector(".main");
-    const fieldsLi = document.querySelectorAll(".fields__li");
-    
-    // if(inputCode.value && inputPriceAverage.value && inputQtd != null){
-        
-    // }
-    const newMainFields = mainFields.cloneNode(true);  // Clonando o elemento
-    main.appendChild(newMainFields);  // Adicionando o novo elemento à página
+    main.appendChild(newMainFields);
 });
 
-
-// //icone copy
-
-// // const iconeCopy = document.querySelector(".icone__copy");
-// // iconeCopy.addEventListener('click', copy);
-
-// // async function copy() {
-// //     alert('Clique detectado!');
-
-// //     // Obtendo o texto do elemento com a classe .txt
-// //     let textForCopy = document.querySelector('.txt').textContent; // Para <p> ou <div>, use textContent
-
-// //     try {
-// //         // Tentando copiar o texto para a área de transferência
-// //         await navigator.clipboard.writeText(textForCopy);
-// //         alert('Texto copiado!');
-// //     } catch (error) {
-// //         console.error('Erro ao copiar:', error);
-// //         alert('Falha ao copiar o texto!');
-// //     }
-// // }
-
-
-// // const iconeCopy = document.querySelector(".icone__copy");
-// // iconeCopy.addEventListener('click', copy);
-
-// // async function copy() {
-// //     alert('click');
-// //     let textForCopy = document.querySelector('.txt').innerText;
-// //     await navigator.clipboard.writeText(textForCopy);
-// // }
-
-// const inputCode = document.querySelector('.input__code');
-// const inputPriceAverage= document.querySelector('.input__average--price');
-// const inputQtd = document.querySelector('.input__quantity');
-
-const addClass = () => {
-    //tudo nodelist
+// Função para capturar os dados e enviar ao backend
+btnSubmit.addEventListener("click", async () => {
+    // Obter todos os campos de código, quantidade e preço
     const allInputCode = document.querySelectorAll(".input__code");
     const allInputPrice = document.querySelectorAll(".input__average--price");
     const allInputQtd = document.querySelectorAll(".input__quantity");
 
-    // const oneStock = {
-    //     `ativo`
-    // }
-
-    //agora array
-    const stocksCode = Array.from(allInputCode).map((elemento, i) => {
-        elemento.classList.add(`ativo${i+1}`)
-        return elemento
+    // Verificar se todos os campos estão preenchidos
+    if (allInputCode.length === 0 || allInputPrice.length === 0 || allInputQtd.length === 0) {
+        alert("Por favor, adicione pelo menos uma ação e preencha todos os campos.");
+        return;
     }
-); 
-        
 
-    const stocksPrice = Array.from(allInputPrice).map((elemento, i) => {
-        elemento.classList.add(`ativo${i+1}`)
+    // Criar o payload com os dados
+    const stocks = Array.from(allInputCode).map((inputCode, index) => {
+        const code = inputCode.value;
+        const quantity = allInputQtd[index].value;
+        const price = allInputPrice[index].value;
+
+        return {
+            code: code,
+            quantity: parseInt(quantity),
+            value: parseFloat(price),
+        };
+    });
+
+    // Verificar se a lista de ações não está vazia
+    if (stocks.length === 0) {
+        alert("Nenhuma ação foi adicionada.");
+        return;
     }
-); 
 
-    const stocksQtd = Array.from(allInputQtd).map((elemento, i) => {
-        elemento.classList.add(`ativo${i+1}`)}); 
-        return stocksQtd;
+    // Criar o objeto de payload
+    const payload = {
+        stocks: stocks,
+    };
 
-}
+    // Enviar a requisição POST
+    try {
+        const response = await fetch('http://stock-route-brianzav-dev.apps.sandbox-m4.g2pi.p1.openshiftapps.com/api/v1/stock', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(payload),
+        });
 
-//     const addInAObject = ()=>{
-//         // console.log(stocksCode,stocksPrice,stocksQtd);
+        if (!response.ok) {
+            throw new Error('Erro ao enviar os dados.');
+        }
 
-//     }
+        const data = await response.json();
 
-// const submitData = () => {
-//     console.log(inputCode.value,inputPriceAverage.value,inputQtd.value);
-//     const data = {
-//         "stocks":[]
-//     }
-//     data += {
-//         "stocks":
-//         [
-//            {
-//             "code":inputCode.value,
-//             "quantity":inputQtd.value,
-//             "averagePrice":inputPriceAverage.value
-//            },
-//            {
-//             "code":inputCode.value,
-//             "quantity":inputQtd.value,
-//             "averagePrice":inputPriceAverage.value
-//            },
-//            {
-//             "code":inputCode.value,
-//             "quantity":inputQtd.value,
-//             "averagePrice":inputPriceAverage.value
-//            }
-//         ]
-//     }
-// }
-
-// const generateJSON = () => {
-//     // Selecionar os inputs das listas
-//     const allInputCode = document.querySelectorAll(".input__code");
-//     const allInputPrice = document.querySelectorAll(".input__average--price");
-//     const allInputQtd = document.querySelectorAll(".input__quantity");
-
-//     // Inicializar o array para armazenar os objetos "stocks"
-//     const stocks = [];
-
-//     // Iterar sobre os elementos das listas usando o índice
-//     allInputCode.forEach((inputCode, index) => {
-//         const inputQtd = allInputQtd[index];  // Correspondente na lista de quantidades
-//         const inputPriceAverage = allInputPrice[index];  // Correspondente na lista de preços
-
-//         // Adicionar o objeto ao array de "stocks"
-//         stocks.push({
-//             [`code${index + 1}`]: inputCode.value,
-//             [`quantity${index + 1}`]: inputQtd.value,
-//             [`averagePrice${index + 1}`]: inputPriceAverage.value,
-//         });
-//     });
-
-//     // Criar o JSON final
-//     const resultJSON = {
-//         stocks: stocks,
-//     };
-
-//     // Retornar ou exibir o JSON
-//     console.log(resultJSON);
-//     return resultJSON;
-// };
-
-// // Chamar a função
-
-
-
-
+        // Mostrar a resposta no frontend
+        const h2 = document.querySelector('.txt');
+        h2.textContent = `Success: ${JSON.stringify(data)}`;
+        console.log(data);
+    } catch (error) {
+        console.error(error);
+        const h2 = document.querySelector('.txt');
+        h2.textContent = `Error: ${error.message}`;
+    }
+});
