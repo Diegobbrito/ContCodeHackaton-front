@@ -11,8 +11,9 @@ btnSubmit.addEventListener('click', async () => {
         stocks: stockActions, // Enviar todas as ações da lista
     };
 
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL;
     try {
-        const response = await fetch('http://stock-route-brianzav-dev.apps.sandbox-m4.g2pi.p1.openshiftapps.com/api/v1/stock', {
+        const response = await fetch(`${apiUrl}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
