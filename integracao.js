@@ -26,97 +26,15 @@ btnSubmit.addEventListener('click', async () => {
 
         const data = await response.json();
 
-        // Exibir a resposta na nova aba
-        openResponsePage(data);
+        // Salvar a resposta da API no localStorage para ser acessada na página result.html
+        localStorage.setItem('apiResponse', JSON.stringify(data));
+
+        // Redirecionar para a página result.html
+        window.location.href = 'result.html'; // Redireciona para a página de resultados
+
     } catch (error) {
         console.error(error);
         const h2 = document.querySelector('.txt');
         h2.textContent = `Error: ${error.message}`;
     }
 });
-
-// Função para abrir a nova aba e mostrar a resposta da API
-function openResponsePage(data) {
-    const newWindow = window.open("", "_blank");
-    newWindow.document.write(`
-        <!DOCTYPE html>
-        <html lang="pt-BR">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
-            <link rel="stylesheet" href="/css/style.css">
-            <title>Detalhes das Ações</title>
-            <style>
-                body {
-                    font-family: 'Jost', sans-serif;
-                    padding: 20px;
-                    background-color: #f9fafb;
-                }
-                h2 {
-                    color: #4A90E2;
-                }
-                .stock-item {
-                    background: #fff;
-                    border-radius: 8px;
-                    padding: 16px;
-                    margin: 16px 0;
-                    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-                }
-                .stock-item p {
-                    margin: 8px 0;
-                    font-size: 16px;
-                    color: #333;
-                }
-                .copy-button {
-                    margin-top: 12px;
-                    padding: 8px 16px;
-                    background-color: #4CAF50;
-                    color: white;
-                    border: none;
-                    border-radius: 5px;
-                    cursor: pointer;
-                }
-                .copy-button:hover {
-                    background-color: #45a049;
-                }
-                .stock-header {
-                    font-size: 18px;
-                    font-weight: bold;
-                }
-            </style>
-        </head>
-        <body>
-            <h2>Ações enviadas para o imposto de renda:</h2>
-            <div id="stocks-list">
-    `);
-
-    // Loop para exibir cada ação
-    data.stocks.forEach(stock => {
-        newWindow.document.write(`
-            <div class="stock-item">
-                <div class="stock-header">Código: ${stock.code}</div>
-                <p><strong>CNPJ:</strong> ${stock.companyDocument}</p>
-                <p><strong>Descrição:</strong> ${stock.description}</p>
-                <button class="copy-button" onclick="copyToClipboard('${stock.description}')">Copiar Descrição</button>
-            </div>
-        `);
-    });
-
-    newWindow.document.write(`
-        </div>
-        <script>
-            function copyToClipboard(text) {
-                navigator.clipboard.writeText(text)
-                    .then(() => {
-                        alert('Texto copiado para área de transferência!');
-                    })
-                    .catch(err => {
-                        console.error('Erro ao copiar: ', err);
-                    });
-            }
-        </script>
-        </body>
-        </html>
-    `);
-}

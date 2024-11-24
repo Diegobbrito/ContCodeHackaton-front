@@ -27,7 +27,6 @@
         <p class="text-xl font-semibold">Informe o código das Ações, o preço médio e a quantidade para calcular seu imposto de Renda de cada ação.</p>
     </div>
 
-    <!-- Formulário de Ações -->
     <div class="form-container space-y-6">
         <div class="main__fields grid grid-cols-3 gap-4">
             <div class="flex flex-col">
@@ -35,8 +34,8 @@
                 <input id="code" class="input__code px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600" type="text" placeholder="Ex: ITUB4">
             </div>
             <div class="flex flex-col">
-                <label for="average-price" class="text-gray-700">Preço Médio</label>
-                <input id="average-price" class="input__average--price px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600" type="number" placeholder="Ex: 25.50">
+                <label for="value" class="text-gray-700">Valor</label>
+                <input id="value" class="input__value px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600" type="number" placeholder="Ex: 25.50">
             </div>
             <div class="flex flex-col">
                 <label for="quantity" class="text-gray-700">Quantidade</label>
@@ -44,15 +43,14 @@
             </div>
         </div>
 
-        <!-- Área onde as ações adicionadas serão exibidas -->
-        <div id="actions-list" class="mt-6 space-y-4"></div>
+        <div id="actions-list" class="mt-6 space-y-4"></div> <!-- Lista de ações -->
 
-        <!-- Botões -->
         <div class="flex justify-between mt-4">
             <button type="button" class="btn__add--action px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-300">Adicionar Ação</button>
             <button type="button" class="btn__submit px-6 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition duration-300">Enviar</button>
         </div>
     </div>
+
 
 </main>
 

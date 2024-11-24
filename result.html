@@ -1,35 +1,46 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/css/style.css">
-    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Adicionando Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <title>Resultado das Ações</title>
 </head>
-<body>
-    <h2 class="txt">
-        Aqui está o que você precisa para Declarar seu imposto de Renda de cada Ação
-    </h2>
-    <details>
-        <summary>
-            <h3 class="summary__code"></h3>
-        </summary>
-        <p>CNPJ</p>
-        <p>1346579811</p>
-        <button>
-            <img class="icone__copy" src="/imgs/copia-de.png" alt="ícone copiar para area de transferencia">
-        </button>
-        <p>DISCRIMINAÇÃO</p>
-        <p>600 AÇÕES DE CEMIG3/PREÇO MÉDIO DE R$24.61/CUSTO TOTAL DE AQUISIÇÃO </p>
-        <button>
-            <img class="icone__copy" src="/imgs/copia-de.png" alt="ícone copiar para area de transferencia">
-        </button>
-    </details>
-    <script src="main.js"></script>
-    <script src="result.js"></script>
-    <script src="integracao.js"></script>
-   </body>
+
+<body class="bg-gray-50">
+
+<header class="bg-blue-600 text-white p-6">
+    <div class="text-center">
+        <h1 class="text-3xl font-semibold">Resultado das Ações</h1>
+        <p class="text-lg">Confira as informações detalhadas das suas ações enviadas.</p>
+    </div>
+</header>
+
+<main class="container mx-auto p-6">
+    <div class="text-center mb-6">
+        <p class="text-xl font-semibold">Ações Enviadas</p>
+    </div>
+
+    <!-- Se não houver dados, exibir mensagem -->
+    <div id="no-actions-message" class="text-center text-red-500 mb-6 hidden">
+        <p>Não há ações para exibir. Por favor, tente novamente.</p>
+    </div>
+
+    <!-- Lista de Ações -->
+    <div id="actions-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Os itens serão carregados dinamicamente via JavaScript -->
+    </div>
+
+</main>
+
+<script src="result.js"></script>
+
+</body>
 </html>
