@@ -26,34 +26,34 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="text-lg font-semibold text-blue-600">${stock.code}</div>
                 <div class="text-gray-700">
                     <strong class="cnpj">CNPJ:</strong> ${stock.companyDocument}
-                    <img src="/imgs/copy.png" class="icone__copy" alt="icone copiar para área de transferencia">
+                    <button class="btn__copy copy__cnpj" data-text="${stock.companyDocument}">
+                        <img src="/imgs/copy.png" class="icone__copy" alt="icone copiar para área de transferência">
+                    </button>
                 </div>
                 <div class="text-gray-700">
                     <strong>Descrição:</strong> ${stock.description}
+                    <button class="btn__copy copy__description" data-text="${stock.description}">
+                        <img src="/imgs/copy.png" class="icone__copy icone__copy--description" alt="icone copiar para área de transferência">
+                    </button>
                 </div>
-                <button class="btn__copy">
-                    <img src="/imgs/copy.png" class="icone__copy icone__copy--discrimicao" alt="icone copiar para área de transferencia">
-                </button>
-                `;
+            `;
             actionsList.appendChild(actionItem);
-            
         });
 
-    //     const copiedTxt = async (text) => {
-    //         try {
-    //             await navigator.clipboard.writeText(text);
-    //         } catch (e) {
-    //             console.log(e);
-    //         }
-    //     };
-
-    //    const copy = () => {document.querySelector(".btn__copy").addEventListener('click',(stock)=>{
-    //     const text = stock.companyDocument.value;
-    //     writeTextOnTheClipboard();
-    //    })}
-    //    copy();
-
-       
+        // Adicionar evento de clique para copiar texto
+        actionsList.addEventListener('click', (event) => {
+            const button = event.target.closest('.btn__copy');
+            if (button) {
+                const textToCopy = button.getAttribute('data-text');
+                if (textToCopy) {
+                    navigator.clipboard.writeText(textToCopy).then(() => {
+                        alert('Texto copiado para a área de transferência!');
+                    }).catch(err => {
+                        console.error('Erro ao copiar texto: ', err);
+                    });
+                }
+            }
+        });
 
         // Garantir que a mensagem de "nenhuma ação" não seja exibida
         noActionsMessage.classList.add('hidden');

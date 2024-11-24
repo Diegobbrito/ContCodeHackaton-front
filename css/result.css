@@ -1,7 +1,17 @@
+.btn__copy {
+    width: 30px;
+}
+
 .icone__copy {
     width: 20px;
+    transition: 300ms;
+}
+
+.icone__copy:hover {
+    width: 24px;
 }
 
 .cnpj{
     margin-top: 10px 0 0 0 ;
 }
+

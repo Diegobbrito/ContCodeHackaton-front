@@ -73,9 +73,9 @@ document.addEventListener('DOMContentLoaded', () => {
             };
 
             try {
-                const response = await fetch('http://stock-route-brianzav-dev.apps.sandbox-m4.g2pi.p1.openshiftapps.com/api/v1/stock', {
+                const response = await fetch('https://stock-route-brianzav-dev.apps.sandbox-m4.g2pi.p1.openshiftapps.com/api/v1/stock', {
                     method: 'POST',
-                    headers: {
+                    headers: { 
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify(payload),
@@ -87,12 +87,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 const data = await response.json();
 
-                // Salvar a resposta da API no localStorage para ser acessada na página result.html
                 localStorage.setItem('apiResponse', JSON.stringify(data));
 
-                // Redirecionar para a página result.html
-                window.location.href = 'result.html'; // Redireciona para a página de resultados
-                link.target = '_blank';
+                window.open('result.html', '_blank')
 
             } catch (error) {
                 console.error(error);
